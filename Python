@@ -1,0 +1,42 @@
+Mcount = Mcost = Mdis = BRcount = BRcost = BRdis = BAcount = BAcost = Acount = Acost = Saletotal = Save = 0
+#input from the customer
+Bag = [str(x) for x in input("Please enter all the items purchased separated by a comma\n").split(',')]
+
+# checking conditions and calculating discount
+for item in Bag:
+     if item == "milk":
+         Mcount=Mcount+1
+     elif item == "bread":
+         BRcount=BRcount+1
+     elif item == "banana":
+         BAcount=BAcount+1
+     elif item == "apple":
+         Acount=Acount+1
+     else:
+         print("%s - Not Available" %item) 
+
+Acost = Acount*0.89
+BAcost = BAcount*0.99
+Actualtotal = Mcount*3.97 + BRcount*2.17 + BAcost + Acost
+
+if Mcount != 0:
+     Mdis = Mcount % 2
+     Mcost = ((Mcount - Mdis)/2)*5.00 + Mdis*3.97
+
+if BRcount != 0:
+     BRdis = BRcount % 3
+     BRcost = ((BRcount - BRdis)/3)*6.00 + BRdis*2.17
+
+Saletotal = BRcost + Mcost + BAcost + Acost
+Save = Actualtotal - Saletotal
+
+print("\nItem     Quantity        Price")
+print("---------------------------------")
+print("Milk       %d             $%.2f" %(Mcount,Mcost))
+print("Bread      %d             $%.2f" %(BRcount,BRcost))
+print("Apple      %d             $%.2f" %(Acount,Acost))
+print("Banana     %d             $%.2f" %(BAcount,BAcost))
+
+print("\nTotal price : $%.2f" %Saletotal)
+print("You saved $%.2f today." %Save)
+
